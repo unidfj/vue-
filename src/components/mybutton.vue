@@ -1,12 +1,16 @@
 <template>
-  <div class="btn" >
+  <div class="btn" @click="hand">
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
- 
+ methods: {
+   hand(e){
+     this.$emit('click',e)
+   }
+ }
 };
 </script>
 
@@ -23,7 +27,5 @@ export default {
   font-weight: 700;
   margin: 0 auto
 }
-.primary{
 
-}
 </style>
