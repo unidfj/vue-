@@ -50,19 +50,18 @@ export default {
   methods: {
     //async标记这个方法异步
     async login1() {
-      console.log('dianjidianji');
       if (
         /^(\d{5,6})$|^(1\d{10})$/.test(this.user.username) &&
         /^\S{3,16}$/.test(this.user.password)
       ) {
         let res = await login(this.user);
-        console.log(res);
+        // console.log(res);
         if (res.data.message == "用户不存在") {
           this.$toast.fail(res.data.message);
         }else{
           localStorage.setItem('heimatoutiao',res.data.data.token);
           localStorage.setItem('heimatoutiao_userinfo',JSON.stringify(res.data.data.user))
-          this.$router.push({name:'personal'})
+          this.$router.push({path:`/personal/${res.data.data.user.id}`})
         }
       } else {
         this.$toast.fail("用户信息错咯");

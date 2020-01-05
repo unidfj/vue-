@@ -7,3 +7,9 @@ export const login=(data)=>{
         data    
     })
 }
+export const getUserContentById =(id)=>{
+    return axios({
+        url:`/user/${id}`,
+        headers:{'Authorization':localStorage.getItem('heimatoutiao')}//传入token
+    })
+}
