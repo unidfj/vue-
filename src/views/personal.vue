@@ -1,17 +1,15 @@
 <template>
   <div class="personal">
-    <router-link to="/edit_profile">
+    <router-link :to="{ path: `/editpersonal/${userdata.id}` }">
       <div class="profile">
         <!-- $axios.defaults.baseURL读取axios的服务器路径 -->
-        <img
-          :src="userdata.head_img"
-          alt
-        />
+        <img :src="userdata.head_img" alt />
         <div class="profile-center">
           <div class="name">
-            <span class="iconfont iconxingbienan"></span>{{ userdata.nickname }}
+            <span class="iconfont iconxingbienan"></span>
+            {{ userdata.nickname }}
           </div>
-          <div class="time">{{ userdata.create_date }}</div>
+          <div class="time">{{ userdata.create_date | dateFormat('.') }}</div>
         </div>
         <span class="iconfont iconjiantou1"></span>
       </div>
@@ -20,25 +18,42 @@
     <hmcell title="我的跟帖" desc="跟帖/回复"></hmcell>
     <hmcell title="我的收藏" desc="文章/视频"></hmcell>
     <hmcell title="设置"></hmcell>
-    <hmbutton class="btn">退出</hmbutton>
+    <mybutton class="btn" @click="exit">退出</mybutton>
   </div>
 </template>
 
 <script>
 import hmcell from "@/components/mycell.vue";
-import hmbutton from "@/components/mybutton.vue";
+import mybutton from "@/components/mybutton.vue";
 import { getUserContentById } from "../api/user.js";
+import { dateFormat } from "../utils/myfilter.js";
 export default {
+  //zujian
   components: {
     hmcell,
-    hmbutton
+    mybutton
   },
+  //过滤器
+  filters: {
+    dateFormat
+  },
+  //shuju
   data() {
     return {
       userdata: {}
     };
   },
+  //fangfa
+  methods: {
+    //退出
+    exit() {
+      localStorage.removeItem("heimatoutiao");
+      this.$router.push({ path: "/" });
+    }
+  },
+  // 钩子函数
   async mounted() {
+    // 获取数据 拼接字符串
     let res = await getUserContentById(this.$route.params.id);
     // console.log(res);
     if (res.data.message == "获取成功") {
@@ -46,7 +61,6 @@ export default {
       this.userdata = res.data.data;
       this.userdata.head_img = `http://127.0.0.1:3000` + res.data.data.head_img;
     }
-    
   }
 };
 </script>

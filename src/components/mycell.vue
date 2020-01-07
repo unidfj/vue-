@@ -1,13 +1,20 @@
 <template>
-  <div class="cell">
+  <div class="cell" @click="click">
     <div class="left">{{title}}</div>
-    <div class="right">{{desc}}</div>
+    <div class="right">{{type=='password'?'******':desc}}
+      <span class="iconfont iconjiantou1"></span>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-   props:['title','desc']
+   props:['title','desc','type'],
+   methods: {
+     click(e){
+       this.$emit('click',e)
+     }
+   }
 
 }
 </script>

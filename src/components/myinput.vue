@@ -32,7 +32,7 @@ export default {
         //引入toast就已经挂载在Vue中,fail错误触发 message提示信息 duration提示持续时间
         this.$toast.fail({
           message: this.tip || "输入不正确",
-          duration: 3000
+          duration: 1000
         });
       }
     }

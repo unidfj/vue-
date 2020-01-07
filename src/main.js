@@ -6,10 +6,21 @@ Vue.config.productionTip = false
 //vant
 import {
   Button,
-  Toast
+  Toast,
+  Uploader,
+  Dialog,
+  Field,
+  Picker
 } from 'vant'
 
-Vue.use(Button).use(Toast)
+Vue.use(Button)
+  .use(Toast)
+  .use(Uploader)
+  .use(Dialog)
+  .use(Field)
+  .use(Picker)
+
+  
 import '@/styles/reset.css'
 new Vue({
   router,

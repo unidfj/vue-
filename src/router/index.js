@@ -2,18 +2,31 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import login from '@/views/login.vue'
 import personal from '@/views/personal.vue';
+import editpersonal from '@/views/editpersonal.vue';
+import index from '../views/index.vue'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
-  routes: [{
-    path: '/login',
-    name: 'login',
-    component: login
-  }, {
-    path: '/personal/:id',
-    component: personal,
-    name: 'personal'
-  }]
+  routes: [
+    {
+      path:'/',
+      name:'index',
+      component:index
+    },{
+      path: '/login',
+      name: 'login',
+      component: login
+    }, {
+      path: '/personal/:id',
+      component: personal,
+      name: 'personal'
+    },
+    {
+      path:'/editpersonal/:id',
+      component:editpersonal,
+      name:'editpersonal'
+    }
+  ],
 })
 // 导航首位  路由用的 就是个每次路由执行时触发的方法
 router.beforeEach((to, from, next) => {

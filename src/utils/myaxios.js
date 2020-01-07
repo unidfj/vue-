@@ -19,7 +19,7 @@ axios.interceptors.response.use(function (response) {
     // console.log(response);
     if (response.data.message == '用户信息验证失败!' || response.data.message == '用户信息验证失败') {
         alert(response.data.message)
-        //这里不能调用路由`.`
+        //这里不hao用路由`.`
         location.href='#/login'
     }
     return response;
