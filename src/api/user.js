@@ -18,11 +18,25 @@ export const userdata = (id) => {
         url: `/user/${id}`,
     })
 }
-
+// 更新用户数据
 export const userupdate = (id, data) => {
     return axios({
         url: `/user_update/${id}`,
         method: 'post',
         data
+    })
+}
+
+// 关注用户
+export const followUser = (id)=>{
+    return axios({
+        url:`/user_follows/${id}`
+    })
+}
+
+// 取消关注用户
+export const unfollowUser = (id)=>{
+    return axios({
+        url:`/user_unfollow/${id}`
     })
 }

@@ -1,8 +1,8 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 //vant
 import {
   Button,
@@ -10,19 +10,18 @@ import {
   Uploader,
   Dialog,
   Field,
-  Picker
-} from 'vant'
+  Picker,
+  Icon,
+  Tab,
+  Tabs,
+  List,
+  PullRefresh
+} from "vant";
 
-Vue.use(Button)
-  .use(Toast)
-  .use(Uploader)
-  .use(Dialog)
-  .use(Field)
-  .use(Picker)
+Vue.use(Button).use(Toast).use(Uploader).use(Dialog).use(Field).use(Picker).use(Icon).use(Tab).use(Tabs).use(List).use(PullRefresh);
 
-  
-import '@/styles/reset.css'
+import "@/styles/reset.css";
 new Vue({
   router,
   render: h => h(App)
-}).$mount('#app')
+}).$mount("#app");

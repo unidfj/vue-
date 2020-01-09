@@ -3,16 +3,19 @@ import VueRouter from 'vue-router'
 import login from '@/views/login.vue'
 import personal from '@/views/personal.vue';
 import editpersonal from '@/views/editpersonal.vue';
-import index from '../views/index.vue'
+import index from '@/views/index.vue';
+import articledetail from '../views/articledetail.vue'
+import {
+  Search
+} from 'vant';
 Vue.use(VueRouter)
 
 const router = new VueRouter({
-  routes: [
-    {
-      path:'/',
-      name:'index',
-      component:index
-    },{
+  routes: [{
+      path: '/',
+      name: 'index',
+      component: index
+    }, {
       path: '/login',
       name: 'login',
       component: login
@@ -20,17 +23,20 @@ const router = new VueRouter({
       path: '/personal/:id',
       component: personal,
       name: 'personal'
+    },{
+      path: '/editpersonal/:id',
+      component: editpersonal,
+      name: 'editpersonal'
+    }, {
+      path: '/articledetail/:id',
+      component: articledetail,
+      name: 'articledetail'
     },
-    {
-      path:'/editpersonal/:id',
-      component:editpersonal,
-      name:'editpersonal'
-    }
+
   ],
 })
 // 导航首位  路由用的 就是个每次路由执行时触发的方法
 router.beforeEach((to, from, next) => {
-    //to and from are Route Object,next() must be called to resolve the hook}
     if (to.path.indexOf('/personal') === 0) {
       let token = localStorage.getItem('heimatoutiao')
       token ? next() : next({
