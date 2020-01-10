@@ -49,3 +49,4 @@ export const followlist = () => axios({
 export const starlist = () => axios({
     url: '/user_star'
 })
+

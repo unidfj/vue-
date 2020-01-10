@@ -5,7 +5,7 @@
     </myheader>
 
     <van-swipe-cell v-for="(i,index) in list" :key="i.id">
-      <newblock :data="i"></newblock>
+      <newblock :data="i" @click="$router.push({path: `/articledetail/${i.id}`})"></newblock>
       <template slot="right">
         <van-button square type="danger" text="取消收藏" @click="close(i,index)" />
         <!-- <van-button square type="primary" text="收藏" /> -->
@@ -49,9 +49,7 @@ export default {
 };
 </script>
 <style lang='less' scoped>
-/deep/.van-swipe-cell__right {
-  position: absolute;
-  top: 40%;
-  height: 100%;
+.van-button{
+  height: 100%
 }
 </style>

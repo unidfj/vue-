@@ -8,6 +8,7 @@ import articledetail from '@/views/articledetail.vue'
 import follow from '@/views/follow.vue'
 import star from '@/views/star.vue'
 import comment from '../views/comment.vue';
+import catemanager from '../views/catemanager.vue'
 import {
   Search
 } from 'vant';
@@ -19,16 +20,20 @@ const router = new VueRouter({
       name: 'index',
       component: index
     }, {
+      path: '/catemanager',
+      name: 'catemanager',
+      component: catemanager
+    }, {
       path: '/comment/:id',
-      name: comment,
+      name: 'comment',
       component: comment
     }, {
       path: '/star',
-      name: star,
+      name: 'star',
       component: star
     }, {
       path: '/follow',
-      name: follow,
+      name: 'follow',
       component: follow
     }, {
       path: '/login',

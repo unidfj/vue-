@@ -14,7 +14,7 @@
       </div>
     </div>
     <!-- tab导航栏 -->
-    <van-tabs v-model="active" sticky swipeable>
+    <van-tabs v-model="active" sticky swipeable class="findSticky">
       <!-- 动态生成    遍历catelist生成$个栏目 -->
       <van-tab :title="item.name" v-for="item in catelist" :key="item.id">
         <!-- van-pull-refresh下拉刷新组件 -->
@@ -58,8 +58,30 @@ export default {
   },
   // 钩子函数
   async mounted() {
+    // 添加事件 只有点击添加的伪元素的时候才跳转 栏目管理页面
+    document.querySelector(".van-sticky").onclick = e => {
+      if (e.target.className === "van-sticky") {
+        this.$router.push({ name: "catemanager" });
+      }
+      return false;
+    };
+    //先判断本地有没有保存的自定义栏目 有就用没就res
+    //本地存储的栏目是 没头条or没头条关注 人为添加
     let res = await lanmu();
-    this.catelist = res.data.data;
+    if (localStorage.getItem("cate_remove")) {
+      this.catelist = JSON.parse(localStorage.getItem("cate_remove"));
+      localStorage.getItem("heimatoutiao")
+        ? this.catelist.unshift(
+            ...[
+              { id: 1, name: "关注", is_top: 1 },
+              { id: 999, name: "头条", is_top: 1 }
+            ]
+          )
+        : this.catelist.unshift({ id: 999, name: "头条", is_top: 1 });
+    } else {
+      this.catelist = res.data.data;
+    }
+
     this.catelist = this.catelist.map(value => {
       return {
         ...value,
@@ -141,6 +163,21 @@ export default {
   .user {
     padding: 0 10px;
     font-size: 25px;
+  }
+}
+/deep/.van-sticky {
+  padding-right: 50px;
+  &::after {
+    content: "+";
+    position: absolute;
+    width: 51px;
+    height: 44px;
+    background-color: #fff;
+    top: 0;
+    right: 0;
+    text-align: center;
+    line-height: 42px;
+    font-size: 35px;
   }
 }
 </style>
