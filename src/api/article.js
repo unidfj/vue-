@@ -19,3 +19,31 @@ export const articleById = (id) => {
 export const dianzanById = (id) => axios({
     url: `/post_like/${id}`
 })
+
+
+//4根据id收藏
+export const shoucangById = (id) => axios({
+    url: `/post_star/${id}`
+})
+
+//根据id获取文章的评论
+export const commentById = (id, params) => axios({
+    url: `/post_comment/${id}`,
+    params
+})
+
+//根据id获取
+export const replycomment = (id, data) => axios({
+    method: 'post',
+    url: `/post_comment/${id}`,
+    data
+})
+
+//发布评论
+export const sendcommment = (id,data)=>{
+    return axios({
+        method:'post',
+        url:`/post_comment/${id}`,
+        data
+    })
+}

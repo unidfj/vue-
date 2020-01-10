@@ -21,7 +21,7 @@ export default {
   display: flex;
   justify-content: space-between;
   text-align: center;
-   border-bottom: 1px solid #ccc;
+  //  border-bottom: 1px solid #ccc;
   > div:nth-of-type(1),div:nth-of-type(3){
     padding: 0 10px 
   }

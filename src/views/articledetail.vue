@@ -18,7 +18,7 @@
       <video class="content" v-if="data.type==2" :src="data.content" controls></video>
       <div class="opt">
         <span class="like" @click="dianzan" :class="{likesuccess:data.has_like}">
-          <van-icon name="good-job-o" />
+          <van-icon name="good-job-o"/>
           {{data.like_length}}
         </span>
         <span class="chat">
@@ -42,13 +42,19 @@
       </div>
       <div class="more">更多跟帖</div>
     </div>
+    <!-- footer 把data全部传过去 点赞分享发评论给他做-->
+    <myfooter :post="data"></myfooter>
   </div>
 </template>
 <script>
-import { articleById, dianzanById } from "@/api/article.js";
+import myfooter from "../components/myfooter";
+import { articleById, dianzanById} from "@/api/article.js";
 import { dateFormat } from "@/utils/myfilter";
 import { unfollowUser, followUser } from "@/api/user";
 export default {
+  components: {
+    myfooter
+  },
   filters: {
     //过滤器
     dateFormat
@@ -61,7 +67,6 @@ export default {
   async mounted() {
     let res = await articleById(this.$route.params.id);
     this.data = res.data.data;
-    // console.log(this.data);
   },
   methods: {
     //关注事件 两个接口 判断 id调用对应接口 提示 取反 (已绑定)动态换肤
@@ -80,7 +85,8 @@ export default {
         : this.data.like_length--;
       this.$toast.success(res.data.message);
       this.data.has_like = !this.data.has_like;
-    }
+    },
+    //收藏事件做在子组件的
   }
 };
 </script>
@@ -169,7 +175,7 @@ export default {
 //3
 .keeps {
   border-top: 5px solid #ddd;
-  padding: 0 15px;
+  padding: 0 15px 50px 0;
   > h2 {
     font-size: 25px;
     line-height: 50px;

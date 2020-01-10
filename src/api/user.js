@@ -28,15 +28,24 @@ export const userupdate = (id, data) => {
 }
 
 // 关注用户
-export const followUser = (id)=>{
+export const followUser = (id) => {
     return axios({
-        url:`/user_follows/${id}`
+        url: `/user_follows/${id}`
     })
 }
 
 // 取消关注用户
-export const unfollowUser = (id)=>{
-    return axios({
-        url:`/user_unfollow/${id}`
+export const unfollowUser = (id) =>
+    axios({
+        url: `/user_unfollow/${id}`
     })
-}
+
+//用户关注列表
+export const followlist = () => axios({
+    url: `/user_follows`
+})
+
+//用户收藏列表
+export const starlist = () => axios({
+    url: '/user_star'
+})

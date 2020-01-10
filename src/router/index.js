@@ -4,7 +4,10 @@ import login from '@/views/login.vue'
 import personal from '@/views/personal.vue';
 import editpersonal from '@/views/editpersonal.vue';
 import index from '@/views/index.vue';
-import articledetail from '../views/articledetail.vue'
+import articledetail from '@/views/articledetail.vue'
+import follow from '@/views/follow.vue'
+import star from '@/views/star.vue'
+import comment from '../views/comment.vue';
 import {
   Search
 } from 'vant';
@@ -16,6 +19,18 @@ const router = new VueRouter({
       name: 'index',
       component: index
     }, {
+      path: '/comment/:id',
+      name: comment,
+      component: comment
+    }, {
+      path: '/star',
+      name: star,
+      component: star
+    }, {
+      path: '/follow',
+      name: follow,
+      component: follow
+    }, {
       path: '/login',
       name: 'login',
       component: login
@@ -23,7 +38,7 @@ const router = new VueRouter({
       path: '/personal/:id',
       component: personal,
       name: 'personal'
-    },{
+    }, {
       path: '/editpersonal/:id',
       component: editpersonal,
       name: 'editpersonal'

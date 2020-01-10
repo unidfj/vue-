@@ -15,10 +15,11 @@ import {
   Tab,
   Tabs,
   List,
-  PullRefresh
+  PullRefresh,
+  SwipeCell
 } from "vant";
 
-Vue.use(Button).use(Toast).use(Uploader).use(Dialog).use(Field).use(Picker).use(Icon).use(Tab).use(Tabs).use(List).use(PullRefresh);
+Vue.use(Button).use(SwipeCell).use(Toast).use(Uploader).use(Dialog).use(Field).use(Picker).use(Icon).use(Tab).use(Tabs).use(List).use(PullRefresh);
 
 import "@/styles/reset.css";
 new Vue({
